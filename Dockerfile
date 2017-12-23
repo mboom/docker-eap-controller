@@ -7,4 +7,7 @@ RUN curl http://static.tp-link.com/resources/software/$package; \
   tmp/install.sh; \
   rm $package; \
   rm -R tmp
-  
+
+EXPOSE 8088
+
+CMD ["tpeap start"]
