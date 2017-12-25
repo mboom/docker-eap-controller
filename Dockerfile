@@ -13,8 +13,8 @@ RUN ["/bin/bash", "-c", "wget -header \"Cookie: oraclelicense=accept-securebacku
   tar --directory /opt/java --extract --file=$jdist.tar.gz --gzip --verbose; \
   rm $jdist.tar.gz
   ln -s /opt/java/$jre /opt/java/current; \
-  export JAVA_HOME=/opt/java/current; \
-  export PATH=$PATH:$JAVA_HOME/bin; \
+  (echo "export JAVA_HOME=/opt/java/current" && export "PATH=$PATH:$JAVA_HOME/bin") > /etc/profile.d/java.sh; \
+  chmod 755 /etc/profile.d/java.sh; \
   sh /etc/profile.d/java.sh; \
   cd /opt/java/$jre; \
   paxctl -c java; \
